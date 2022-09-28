@@ -1,0 +1,67 @@
+IntelliJ IDEA 2022.2.1 ultimate 판 필요
+mybatis,  spring web, h2database, mariadb, spring web service, lombook (설치시 필요한 파일들)
+
+Pycharm Community Edition 2022.2.1 필요
+
+React 최신버젼 필요
+
+npm install @mui/material @mui/styled-engine-sc styled-components --force
+
+npm install @mui/material @emotion/react @emotion/styled --force
+
+npm install axios --force
+
+npm install react-router-dom --force
+
+npm i styled-components --force
+
+npm install react-bootstrap bootstrap --force
+
+
+집에서 설치할시 추가할 sql문
+개인 localhost로 spring 설정 및 개인 mariaDB ID PW로 설정해야지 연동이 될것이다.
+create table user (
+	u_pk int(11) not null auto_increment primary key,
+	u_id varchar(100) not null,
+	u_password varchar(100) not null,
+	u_name varchar(30) not null,
+	u_email varchar(200) not null,
+	u_phon varchar(11) not null,
+	u_gender char(1) not null,
+	u_post_code int(11) not null,
+	u_adress_1 varchar(200) not null,
+	u_adress_2 varchar(200) not null,
+	u_deleteyn char(1) not null,
+	u_create_date datetime,
+	u_delete_date datetime,
+	u_pwd_change_date datetime
+);
+
+create table dress.review(
+r_pk int(11) not null AUTO_INCREMENT primary key,
+img_url varchar(200) not null,
+create_date datetime not null,
+u_pk int(11) not null,
+constraint fk_user_review foreign key(u_pk) references dress.user(u_pk)
+);
+
+create table dress.comment(
+c_pk int(11) not null primary key,
+u_pk int(11) not null,
+r_pk int(11) not null,
+message TEXT not null,
+create_date datetime not null,
+constraint FK_user_comment FOREIGN KEY (u_pk) REFERENCES user(u_pk),
+constraint FK_review_comment FOREIGN KEY (r_pk) REFERENCES review(r_pk)
+
+Spring Boot
+(연동시)
+application.yml(application.properities로 파일이 있을듯) 의 spring에 192.168.0.85:3306/dress
+
+MariaDB (연동) 설치 필요
+root 비번 qhfk0961
+
+DBeaver (연동) 설치시 필요
+root 비번 qhfk0961
+localhost대신 192.168.0.85
+);
